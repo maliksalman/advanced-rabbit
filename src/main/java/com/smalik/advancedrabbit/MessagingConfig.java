@@ -9,7 +9,7 @@ import org.springframework.messaging.SubscribableChannel;
 public class MessagingConfig {
 
 
-    public static interface Bindings {
+    public interface Bindings {
 
         String MAIN = "main";
         String BACKUP = "backup";

@@ -12,20 +12,20 @@ import java.io.IOException;
 import java.util.Map;
 
 @Component
-public class MainListener {
+public class BackupListener {
 
-    private static Logger logger = LoggerFactory.getLogger(MainListener.class);
+    private static Logger logger = LoggerFactory.getLogger(BackupListener.class);
 
-    @StreamListener(MessagingConfig.Bindings.MAIN)
-    public void processMainMessages (
+    @StreamListener(MessagingConfig.Bindings.BACKUP )
+    public void processBackupMessages (
             @Payload String payload,
             @Headers Map<String, Object> headers) throws IOException {
 
         if (payload.startsWith("fail")) {
-            logger.info("Rejecting Main Message: " + payload + ", " + new ObjectMapper().writeValueAsString(headers));
+            logger.info("Rejecting Backup Message: " + payload + ", " + new ObjectMapper().writeValueAsString(headers));
             throw new RuntimeException("rejecting");
         } else {
-            logger.info("Got Main Message: " + payload);
+            logger.info("Got Backup Message: " + payload);
         }
     }
 }
