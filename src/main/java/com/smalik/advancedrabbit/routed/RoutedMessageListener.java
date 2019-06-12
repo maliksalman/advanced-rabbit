@@ -1,6 +1,5 @@
 package com.smalik.advancedrabbit.routed;
 
-import com.smalik.advancedrabbit.MessagingConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -12,20 +11,20 @@ public class RoutedMessageListener {
 
     private Logger logger = LoggerFactory.getLogger(RoutedMessageListener.class);
 
-    @StreamListener(MessagingConfig.Bindings.RED)
+    @StreamListener(RoutedMessagingConfig.Bindings.RED)
     public void receiveRedMessage(@Payload RoutedMessage message) {
-        logReceiveMessage("red", message);
+        logReceiveMessage(message);
     }
 
-    @StreamListener(MessagingConfig.Bindings.GREEN)
+    @StreamListener(RoutedMessagingConfig.Bindings.GREEN)
     public void receiveGreenMessage(@Payload RoutedMessage message) {
-        logReceiveMessage("green", message);
+        logReceiveMessage(message);
     }
 
-    private void logReceiveMessage(String color, RoutedMessage message) {
-        logger.info(String.format("Got message: Id=[%s] Greeting=[%s] ColorMatch=[%s]",
+    private void logReceiveMessage(RoutedMessage message) {
+        logger.info(String.format("Color=[%s] Id=[%s] Greeting=[%s]",
+            message.getColor(),
             message.getId(),
-            message.getGreeting(),
-            Boolean.valueOf(color.equals(message.getColor())).toString()));
+            message.getGreeting()));
     }
 }
