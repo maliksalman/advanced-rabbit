@@ -5,12 +5,12 @@ import java.util.UUID;
 public class RoutedMessage {
 
     private String color;
-    private String greeting;
+    private String word;
     private String id;
 
-    public RoutedMessage(String color, String greeting) {
+    public RoutedMessage(String color, String word) {
         this.color = color;
-        this.greeting = greeting;
+        this.word = word;
         this.id = UUID.randomUUID().toString();
     }
 
@@ -22,12 +22,12 @@ public class RoutedMessage {
         this.color = color;
     }
 
-    public String getGreeting() {
-        return greeting;
+    public String getWord() {
+        return word;
     }
 
-    public void setGreeting(String greeting) {
-        this.greeting = greeting;
+    public void setWord(String word) {
+        this.word = word;
     }
 
     public String getId() {

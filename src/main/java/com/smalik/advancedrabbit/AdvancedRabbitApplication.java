@@ -9,6 +9,5 @@ public class AdvancedRabbitApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AdvancedRabbitApplication.class, args);
 	}
-
 }
 

@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+
+        producer:
+          destination: routed.topic
+          contentType: application/json
+
+      rabbit:
+        bindings:
+
+          producer:
+            producer:
+              routingKeyExpression: payload.color

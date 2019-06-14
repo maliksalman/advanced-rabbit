@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+
+        consumer:
+          destination: routed.topic
+          contentType: application/json
+          group: ${ROUTING_KEY}
+
+      rabbit:
+        bindings:
+
+          consumer:
+            consumer:
+              bindingRoutingKey: ${ROUTING_KEY}
+
+  main:
+    web-application-type: NONE

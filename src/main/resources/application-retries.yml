@@ -1,0 +1,38 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+
+        main:
+          destination: main.topic
+          contentType: application/json
+          group: advanced
+          consumer:
+            maxAttempts: 5
+            backOffInitialInterval: 1000
+            backOffMaxInterval: 6000
+
+        backup:
+          destination: backup.topic
+          contentType: application/json
+          group: advanced
+          consumer:
+            maxAttempts: 3
+            backOffInitialInterval: 1000
+            backOffMaxInterval: 6000
+
+      rabbit:
+        bindings:
+
+          main:
+            consumer:
+              autoBindDlq: true
+
+          backup:
+            consumer:
+              autoBindDlq: true
+              dlqTtl: 60000
+              dlqDeadLetterExchange:
+
+  main:
+    web-application-type: NONE
