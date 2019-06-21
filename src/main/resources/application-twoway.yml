@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+
+        consumer:
+          destination: twoway.topic
+          contentType: application/json
+          group: ${TWOWAY_GROUP}
+
+        producer:
+          destination: twoway.topic
+          contentType: application/json
