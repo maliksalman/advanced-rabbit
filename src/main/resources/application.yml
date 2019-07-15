@@ -1,6 +1,6 @@
 logging:
   level:
     root: INFO
-    org.springframework.integration.handler.LoggingHandler: OFF
+    org.springframework.integration.handler.LoggingHandler: ERROR
     org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler: ERROR
     org.springframework.amqp.rabbit.retry.RejectAndDontRequeueRecoverer: ERROR

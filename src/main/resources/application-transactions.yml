@@ -1,0 +1,25 @@
+spring:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+  cloud:
+    stream:
+      bindings:
+
+        txin:
+          destination: txin.topic
+          group: advanced
+
+        txout:
+          destination: txout.topic
+          contentType: application/json
+
+
+      rabbit:
+        bindings:
+          txout:
+            producer:
+              transacted: true
