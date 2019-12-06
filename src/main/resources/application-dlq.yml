@@ -4,13 +4,20 @@ spring:
       bindings:
 
         main:
-          destination: retries.topic
+          destination: retries-with-dlq.topic
           contentType: application/json
           group: advanced
           consumer:
-            maxAttempts: 6
+            maxAttempts: 3
             backOffInitialInterval: 500
             backOffMaxInterval: 3000
+
+      rabbit:
+        bindings:
+
+          main:
+            consumer:
+              autoBindDlq: true
 
   main:
     web-application-type: NONE

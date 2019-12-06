@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+
+        main:
+          destination: rertries-with-dlq2.topic
+          contentType: application/json
+          group: advanced
+          consumer:
+            maxAttempts: 3
+            backOffInitialInterval: 500
+            backOffMaxInterval: 3000
+
+      rabbit:
+        bindings:
+
+          main:
+            consumer:
+              autoBindDlq: true
+              dlqTtl: 120000
+              dlqDeadLetterExchange:
+
+  main:
+    web-application-type: NONE

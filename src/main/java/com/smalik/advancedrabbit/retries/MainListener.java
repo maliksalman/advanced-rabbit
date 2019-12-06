@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.Map;
 
-@Profile("retries")
+@Profile({"retries", "dlq", "dlq2"})
 @Component
 public class MainListener {
 
@@ -24,10 +24,10 @@ public class MainListener {
             @Headers Map<String, Object> headers) throws IOException {
 
         if (payload.startsWith("fail")) {
-            logger.info("Rejecting Main Message: " + payload + ", " + new ObjectMapper().writeValueAsString(headers));
+            logger.info("Rejecting: " + payload + ", " + new ObjectMapper().writeValueAsString(headers));
             throw new RuntimeException("rejecting");
         } else {
-            logger.info("Got Main Message: " + payload);
+            logger.info("Message: " + payload);
         }
     }
 }
