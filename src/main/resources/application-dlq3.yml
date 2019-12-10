@@ -22,3 +22,5 @@ spring:
           retries:
             consumer:
               autoBindDlq: true
+              dlqTtl: 60000
+              dlqDeadLetterExchange:

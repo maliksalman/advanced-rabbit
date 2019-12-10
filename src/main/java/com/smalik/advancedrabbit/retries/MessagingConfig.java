@@ -5,15 +5,15 @@ import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.context.annotation.Profile;
 import org.springframework.messaging.SubscribableChannel;
 
-@Profile({"retries", "dlq", "dlq2"})
+@Profile({"retries", "dlq", "dlq2", "dlq3"})
 @EnableBinding(MessagingConfig.Bindings.class)
 public class MessagingConfig {
 
     public interface Bindings {
 
-        String MAIN = "main";
+        String RETRIES = "retries";
 
-        @Input(MAIN)
-        SubscribableChannel getMainChannel();
+        @Input(RETRIES)
+        SubscribableChannel getRetriesChannel();
     }
 }

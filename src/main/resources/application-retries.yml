@@ -1,9 +1,13 @@
 spring:
+
+  main:
+    web-application-type: NONE
+
   cloud:
     stream:
       bindings:
 
-        main:
+        retries:
           destination: retries.topic
           contentType: application/json
           group: advanced
@@ -11,6 +15,3 @@ spring:
             maxAttempts: 6
             backOffInitialInterval: 500
             backOffMaxInterval: 3000
-
-  main:
-    web-application-type: NONE

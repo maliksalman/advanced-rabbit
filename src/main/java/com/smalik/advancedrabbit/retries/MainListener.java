@@ -12,13 +12,13 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.Map;
 
-@Profile({"retries", "dlq", "dlq2"})
+@Profile({"retries", "dlq", "dlq2", "dlq3"})
 @Component
 public class MainListener {
 
     private static Logger logger = LoggerFactory.getLogger(MainListener.class);
 
-    @StreamListener(MessagingConfig.Bindings.MAIN)
+    @StreamListener(MessagingConfig.Bindings.RETRIES)
     public void processMainMessages (
             @Payload String payload,
             @Headers Map<String, Object> headers) throws IOException {
