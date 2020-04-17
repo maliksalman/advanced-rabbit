@@ -10,7 +10,7 @@ This spring-boot app takes advantage of the spring profiles capabilities to demo
 1. Moving messages to DLQ after retries are exhausted
 1. Expiring messages from DLQ
 1. Moving messages to the origial queue from DLQ
-1. Shared transactions with DB while consuming messages
+1. Shared transactions with RabbitMQ and DB while consuming messages
 1. Routing messages based on JSON message content 
 
 ## Setup
@@ -29,9 +29,11 @@ To stop the container, run:
 docker stop rabbit
 ``` 
 
+**Note:** Remember to stop/start the RabbitMQ docker container in between running the application for a different scenario.  
+
 ## Scenario: Configurable retries while consuming messages 
 
-While consuming messages, if there is an uncaught error in the method annotated with `@StreamListener`, by default spring-cloud-stream binder will retry by calling that method 3 times before giving up and throwing away the message. Those 3 retries are done without any wait time in between. Sometimes, the underlying cause of the error is just temporary and will go away if we had just put some wait times in between the retries. This example will retry the message 6 times with the initial retry after 0.5 seconds  of sleep. Then will keep doubling the wait times between retrys until the max of 3 second wait is reached (ex: 0.5s, 1s, 2s, 3s, 3s, 3s) 
+While consuming messages, if there is an uncaught error in the method annotated with `@StreamListener`, by default spring-cloud-stream binder will retry by calling that method 3 times before giving up and throwing away the message. Those 3 retries are done without any wait time in between. Sometimes, the underlying cause of the error is just temporary and will go away if we had just put some wait times in between the retries. This example will retry the message 6 times with the initial retry after 0.5 seconds of sleep. Then will keep doubling the wait times between retrys until the max of 3 second wait is reached (ex: 0.5s, 1s, 2s, 3s, 3s, 3s) 
 
 All relevant code for this scenario is contained in [src/main/java/com/smalik/advancedrabbit/retries](src/main/java/com/smalik/advancedrabbit/retries) and all the configuration is contained in [src/main/resources/application-retries.yml](src/main/resources/application-retries.yml). To start the application with the `retries` profile, run:
 
