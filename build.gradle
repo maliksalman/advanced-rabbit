@@ -1,12 +1,9 @@
 buildscript {
-	ext {
-		springBootVersion = '2.0.7.RELEASE'
-	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.7.RELEASE")
 	}
 }
 
@@ -15,31 +12,25 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.smalik.advancedrabbit'
-version = '0.0.1-SNAPSHOT'
+version = '1.0'
 sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
 }
 
-ext {
-	set('springCloudVersion', 'Finchley.SR2')
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.SR2"
+	}
 }
 
 dependencies {
-	
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
+
+	// Only needed for the transactions profile
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'com.h2database:h2'
-	
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.cloud:spring-cloud-stream-test-support'
-	
-}
-
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
 }
