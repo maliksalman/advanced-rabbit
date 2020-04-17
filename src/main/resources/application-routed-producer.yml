@@ -3,13 +3,13 @@ spring:
     stream:
       bindings:
 
-        producer:
+        aProducer:
           destination: routed.topic
           contentType: application/json
 
       rabbit:
         bindings:
 
-          producer:
+          aProducer:
             producer:
               routingKeyExpression: payload.color

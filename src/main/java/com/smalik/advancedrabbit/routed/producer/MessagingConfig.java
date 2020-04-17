@@ -11,7 +11,7 @@ public class MessagingConfig {
 
     public interface Bindings {
 
-        String PRODUCER = "producer";
+        String PRODUCER = "aProducer";
 
         @Output(PRODUCER)
         MessageChannel getProducerChannel();

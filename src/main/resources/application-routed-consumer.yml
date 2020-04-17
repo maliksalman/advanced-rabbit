@@ -3,7 +3,7 @@ spring:
     stream:
       bindings:
 
-        consumer:
+        aConsumer:
           destination: routed.topic
           contentType: application/json
           group: ${ROUTING_KEY}
@@ -11,7 +11,7 @@ spring:
       rabbit:
         bindings:
 
-          consumer:
+          aConsumer:
             consumer:
               bindingRoutingKey: ${ROUTING_KEY}
 

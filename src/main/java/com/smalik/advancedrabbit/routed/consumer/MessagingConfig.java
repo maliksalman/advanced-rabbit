@@ -11,7 +11,7 @@ public class MessagingConfig {
 
     public interface Bindings {
 
-        String CONSUMER = "consumer";
+        String CONSUMER = "aConsumer";
 
         @Input(CONSUMER)
         SubscribableChannel getConsumerChannel();
